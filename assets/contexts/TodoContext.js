@@ -3,17 +3,26 @@ export const TodoContext = createContext();
 
 export default class TodoContextProvider extends Component {
     constructor(props) {
+        console.log("let's start");
         super(props);
         this.state = {
             todos: [
                 {name:"this is a todo element1"},
+                {name:"this is a todo element2"},
             ],
         };
     }
 
     // create
-    createTodo(){
-
+    
+    createTodo(event, todo){
+        event.preventDefault();
+        console.log(event);
+        let data = [...this.state.todos];
+        data.push(todo);
+        this.setState ({
+            todos : data,
+        });
     }
 
     // read
