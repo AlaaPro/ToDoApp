@@ -7,8 +7,8 @@ export default class TodoContextProvider extends Component {
         super(props);
         this.state = {
             todos: [
-                {name:"this is a todo element1"},
-                {name:"this is a todo element2"},
+                {id:1, name:"this is a todo element1"},
+                {id:2, name:"this is a todo element2"},
             ],
         };
     }
@@ -31,7 +31,17 @@ export default class TodoContextProvider extends Component {
     }
 
     // update
-    updateTodo(){
+    updateTodo(event,data){
+        event.preventDefault();
+        console.log(data);
+
+        let todos = [...this.state.todos];
+
+        let todo = todos.find(todo => {return todo.id===data.id});
+        
+        todo.name = data.name;
+
+        this.setState({todos : todos});
         
     }
 
